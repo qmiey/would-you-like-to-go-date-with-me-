@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe8f0">
+  <title>A Date With My Bini 💗</title>
+  <style>
+    :root {
+      --pink: #e96b99;
+      --deep-pink: #b74470;
+      --pale-pink: #fff0f5;
+      --ink: #75435a;
+      --paper: rgba(255, 255, 255, .88);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 22px 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 12%, rgba(255,255,255,.95) 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 25%, rgba(255,255,255,.8) 0 3px, transparent 4px),
+        linear-gradient(145deg, #ffe1eb, #fff7fa 50%, #ffd5e4);
+      background-size: 80px 80px, 100px 100px, auto;
+    }
+    button { font: inherit; -webkit-tap-highlight-color: transparent; }
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 480px);
+      padding: clamp(24px, 6vw, 38px);
+      border: 1px solid rgba(255,255,255,.95);
+      border-radius: 30px;
+      background: var(--paper);
+      box-shadow: 0 18px 55px rgba(172, 71, 111, .16);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+    .eyebrow {
+      color: var(--deep-pink);
+      letter-spacing: .16em;
+      font: 700 11px/1.5 Arial, sans-serif;
+      text-transform: uppercase;
+    }
+    .big-heart { display: block; font-size: 48px; margin: 8px 0 12px; animation: heartbeat 1.6s ease-in-out infinite; }
+    h1 { color: var(--deep-pink); font-size: clamp(28px, 7vw, 38px); line-height: 1.15; margin: 12px 0; }
+    h2 { color: var(--deep-pink); font-size: 25px; margin: 10px 0; }
+    p { font-size: 16px; line-height: 1.7; margin: 12px 0; }
+    .small { font-size: 13px; opacity: .8; }
+    .date-pill {
+      display: inline-block;
+      padding: 9px 15px;
+      margin: 10px 0 5px;
+      color: var(--deep-pink);
+      background: #ffe6ef;
+      border: 1px solid #f8c4d7;
+      border-radius: 99px;
+      font: 700 13px Arial, sans-serif;
+    }
+    .button-stack { display: grid; gap: 11px; margin-top: 24px; }
+    .btn {
+      border: 0;
+      border-radius: 99px;
+      padding: 15px 18px;
+      min-height: 48px;
+      cursor: pointer;
+      font: 700 15px Arial, sans-serif;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary { color: white; background: linear-gradient(135deg, #ed78a2, #d94f83); box-shadow: 0 7px 18px #e96b993d; }
+    .btn-secondary { color: var(--deep-pink); background: #fff0f5; border: 1px solid #f5bfd2; }
+    .hidden { display: none !important; }
+    .divider { height: 1px; background: #f4d2df; margin: 22px 0; }
+    .stop-count { color: #b65c7e; font: 700 12px Arial, sans-serif; letter-spacing: .08em; }
+    .destination-icon { font-size: 48px; margin: 10px 0; }
+    .destination-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin: 12px 0 8px;
+      background: #ffe6ef;
+    }
+    .note {
+      background: #fff1f6;
+      border: 1px dashed #edabc5;
+      border-radius: 18px;
+      padding: 15px;
+      margin-top: 17px;
+    }
+    .footer { margin-top: 25px; font-size: 12px; opacity: .7; }
+    .floating-heart {
+      position: fixed;
+      bottom: -35px;
+      z-index: 0;
+      pointer-events: none;
+      animation: float-up linear forwards;
+    }
+    .sparkle { display: inline-block; animation: sparkle 1.8s ease-in-out infinite; }
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+    @keyframes float-up { to { transform: translateY(-115vh) rotate(25deg); opacity: 0; } }
+    @keyframes sparkle { 50% { transform: rotate(12deg) scale(1.15); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section id="welcome">
+      <div class="eyebrow">A little surprise, made just for you</div>
+      <span class="big-heart" aria-hidden="true">💗</span>
+      <p>Hey, <strong>My bini</strong>...</p>
+      <h1>Will you go on a date with me? ♡</h1>
+      <p>I planned a little adventure for us — just you and me, spending time together and making another sweet memory.</p>
+      <div class="date-pill">♡ Saturday, 31 October 2026 ♡</div>
+      <div class="button-stack">
+        <button class="btn btn-primary" id="yesButton">YES, LET'S GO! 💕</button>
+        <button class="btn btn-secondary" id="questionButton">What's the plan? 👀</button>
+      </div>
+    </section>
+
+    <section id="journey" class="hidden" aria-live="polite">
+      <div class="eyebrow">Our little date itinerary</div>
+      <div class="divider"></div>
+      <div class="stop-count" id="stopCount">STOP 1 OF 3</div>
+      <div class="destination-icon" id="destinationIcon">🔬</div>
+      <h2 id="destinationTitle">Petrosains</h2>
+      <p id="destinationDescription">Let's explore, try things out, and be kids together for a little while.</p>
+      <div class="note">
+        <p id="destinationNote">First stop: a little discovery date with my favourite person. 💗</p>
+      </div>
+      <div class="button-stack">
+        <button class="btn btn-primary" id="nextButton">Next surprise →</button>
+        <button class="btn btn-secondary" id="backButton">Back</button>
+      </div>
+    </section>
+
+    <section id="finale" class="hidden" aria-live="polite">
+      <span class="big-heart" aria-hidden="true">💖</span>
+      <div class="eyebrow">One last thing</div>
+      <h1>My favourite part is being with you.</h1>
+      <p>Petrosains, Suria KLCC, and Pasar Seni — three little stops, one special person.</p>
+      <div class="note">
+        <p><strong>Hope our date going well soon❤️</strong></p>
+        <p>Can't wait to spend this day with you, My bini. 🥹</p>
+      </div>
+      <p class="small">Date: Saturday, 31 October 2026</p>
+      <div class="button-stack">
+        <button class="btn btn-primary" id="againButton">Read it again 💌</button>
+      </div>
+    </section>
+    <div class="footer">Made with love, just for you ♡</div>
+  </main>
+
+  <script>
+    const stops = [
+      {
+        icon: "🔬",
+        title: "Petrosains",
+        description: "Let's explore, try things out, and be kids together for a little while.",
+        note: "First stop: a little discovery date with my favourite person. 💗"
+      },
+      {
+        icon: "🛍️",
+        title: "Suria KLCC",
+        description: "Let's walk around, find something yummy to eat, and enjoy our time together.",
+        note: "Second stop: food, window-shopping, and hopefully lots of cute pictures. 📸"
+      },
+      {
+        icon: "🌷",
+        title: "Pasar Seni",
+        description: "Let's explore the market and nearby streets, find cute little things, and end our date with memories.",
+        note: "Last stop: one more little adventure before we call it our day. 💕"
+      }
+    ];
+
+    let currentStop = 0;
+    const welcome = document.getElementById("welcome");
+    const journey = document.getElementById("journey");
+    const finale = document.getElementById("finale");
+
+    function showSection(section) {
+      [welcome, journey, finale].forEach(item => item.classList.add("hidden"));
+      section.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderStop() {
+      const stop = stops[currentStop];
+      document.getElementById("stopCount").textContent = `STOP ${currentStop + 1} OF ${stops.length}`;
+      document.getElementById("destinationIcon").textContent = stop.icon;
+      document.getElementById("destinationTitle").textContent = stop.title;
+      document.getElementById("destinationDescription").textContent = stop.description;
+      document.getElementById("destinationNote").textContent = stop.note;
+      document.getElementById("backButton").classList.toggle("hidden", currentStop === 0);
+      document.getElementById("nextButton").textContent =
+        currentStop === stops.length - 1 ? "One last message 💌" : "Next surprise →";
+    }
+
+    function makeHearts(amount = 24) {
+      const symbols = ["💗", "💕", "💖", "♡", "🌸"];
+      for (let i = 0; i < amount; i++) {
+        const heart = document.createElement("span");
+        heart.className = "floating-heart";
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+        heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
+        window.setTimeout(() => heart.remove(), 8500);
+      }
+    }
+
+    document.getElementById("yesButton").addEventListener("click", () => {
+      currentStop = 0;
+      renderStop();
+      showSection(journey);
+      makeHearts(28);
+    });
+
+    document.getElementById("questionButton").addEventListener("click", () => {
+      currentStop = 0;
+      renderStop();
+      showSection(journey);
+    });
+
+    document.getElementById("nextButton").addEventListener("click", () => {
+      if (currentStop < stops.length - 1) {
+        currentStop++;
+        renderStop();
+        makeHearts(12);
+      } else {
+        showSection(finale);
+        makeHearts(32);
+      }
+    });
+
+    document.getElementById("backButton").addEventListener("click", () => {
+      if (currentStop > 0) currentStop--;
+      renderStop();
+    });
+
+    document.getElementById("againButton").addEventListener("click", () => {
+      currentStop = 0;
+      showSection(welcome);
+      makeHearts(16);
+    });
+  </script>
+</body>
+</html>
