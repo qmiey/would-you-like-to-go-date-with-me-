@@ -1,29 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Miss Nurin ❤️</title>
+
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 25px 12px;
   overflow-x: hidden;
   font-family: Georgia, serif;
   background: linear-gradient(135deg, #3b071b, #791d3b, #bd6478);
   color: #fff8f0;
 }
+
 .card {
   position: relative;
   z-index: 2;
-  width: min(90%, 520px);
-  padding: 42px 28px;
-  margin: 30px 0;
+  width: 100%;
+  max-width: 520px;
+  padding: 40px 25px;
   text-align: center;
   border: 1px solid rgba(255,225,190,.55);
   border-radius: 25px;
@@ -31,10 +36,28 @@ body {
   backdrop-filter: blur(12px);
   box-shadow: 0 20px 60px #21000d66;
 }
-.small { color: #ffd6c9; letter-spacing: 3px; font-size: 12px; }
-h1 { font-size: clamp(30px, 7vw, 43px); margin: 18px 0; }
-p { line-height: 1.8; color: #ffebe5; }
-.heart { font-size: 45px; animation: beat 1.3s infinite; }
+
+.small {
+  color: #ffd6c9;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+h1 {
+  font-size: clamp(30px, 8vw, 43px);
+  margin: 18px 0;
+}
+
+p {
+  line-height: 1.8;
+  color: #ffebe5;
+}
+
+.heart {
+  font-size: 45px;
+  animation: beat 1.3s infinite;
+}
+
 button {
   border: 0;
   border-radius: 30px;
@@ -45,10 +68,26 @@ button {
   cursor: pointer;
   transition: transform .2s;
 }
-button:hover { transform: scale(1.06); }
-.yes { background: #f8d6b3; color: #5b142b; }
-.no { background: transparent; border: 1px solid #ffe2dc; color: white; }
-.hidden { display: none; }
+
+button:hover {
+  transform: scale(1.06);
+}
+
+.yes {
+  background: #f8d6b3;
+  color: #5b142b;
+}
+
+.no {
+  background: transparent;
+  border: 1px solid #ffe2dc;
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
 .letter {
   margin-top: 25px;
   padding: 22px;
@@ -57,10 +96,14 @@ button:hover { transform: scale(1.06); }
   border: 1px solid #f5c9b8;
   animation: appear .8s ease;
 }
-.letter h2 { color: #ffe0c6; }
+
+.letter h2 {
+  color: #ffe0c6;
+}
+
 .modal {
   position: fixed;
-  z-index: 5;
+  z-index: 10;
   inset: 0;
   background: #16000dcc;
   display: flex;
@@ -68,8 +111,10 @@ button:hover { transform: scale(1.06); }
   justify-content: center;
   padding: 20px;
 }
+
 .modal-box {
-  width: min(100%, 380px);
+  width: 100%;
+  max-width: 380px;
   padding: 30px 22px;
   text-align: center;
   border-radius: 22px;
@@ -78,7 +123,12 @@ button:hover { transform: scale(1.06); }
   box-shadow: 0 15px 50px #0006;
   animation: appear .3s ease;
 }
-.modal-box p { color: #671b35; font-size: 20px; }
+
+.modal-box p {
+  color: #671b35;
+  font-size: 20px;
+}
+
 .floating {
   position: fixed;
   bottom: -30px;
@@ -88,99 +138,209 @@ button:hover { transform: scale(1.06); }
   pointer-events: none;
   animation: floatUp linear forwards;
 }
+
 @keyframes beat {
-  50% { transform: scale(1.2); }
+  50% {
+    transform: scale(1.2);
+  }
 }
+
 @keyframes appear {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 @keyframes floatUp {
-  to { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+  to {
+    transform: translateY(-110vh) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 32px 18px;
+  }
+
+  button {
+    padding: 13px 25px;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<main class="card">
+<!-- MAIN QUESTION: SHOWS FIRST -->
+<main class="card" id="mainCard">
+
   <div class="small">A LITTLE QUESTION FOR YOU</div>
+
   <div class="heart">❤️</div>
+
   <h1>Miss Nurin❤️</h1>
+
   <p>
     There's something special I've been wanting to ask you...
   </p>
-  <h2>Will you be mine,<br>again and always?</h2>
 
-  <div>
-    <button class="yes" onclick="sayYes()">YES ❤️</button>
-    <button class="no" onclick="firstNo()">NO</button>
-  </div>
+  <h2>
+    Will you be mine,<br>
+    again and always?
+  </h2>
 
+  <button class="yes" onclick="sayYes()">
+    YES ❤️
+  </button>
+
+  <button class="no" onclick="firstNo()">
+    NO 🥺
+  </button>
+
+  <!-- LOVE LETTER: HIDDEN UNTIL YES -->
   <section id="loveLetter" class="letter hidden">
+
     <div class="heart">💗</div>
+
     <h2>My Dearest Miss Nurin,</h2>
+
     <p>
-      I love youu so muchh🫶🏻✨. Thank you for everything
-      you has done for me, your effort, time, patience.
+      I love youu so muchh🫶🏻✨.
+      Thank you for everything you has done for me,
+      your effort, time, patience.
       Thank youuu wakk❤️🌷
     </p>
+
     <p>
-      I would choose you again and again. I hope we keep
-      making beautiful memories, growing together, and
-      finding new reasons to love each other every day.
+      I would choose you again and again.
+      I hope we keep making beautiful memories,
+      growing together, and finding new reasons
+      to love each other every day.
     </p>
+
     <h2>Always you. ❤️</h2>
+
   </section>
+
 </main>
 
+<!-- FIRST NO POPUP: HIDDEN AT START -->
 <div id="firstModal" class="modal hidden">
+
   <div class="modal-box">
+
     <div class="heart">🥺</div>
+
     <p>Are you sure, Miss Nurin? 🥺❤️</p>
-    <button class="yes" onclick="sayYes()">YES ❤️</button>
+
+    <button class="yes" onclick="sayYes()">
+      YES ❤️
+    </button>
+
     <button class="no" style="color:#671b35;border-color:#671b35"
-      onclick="secondNo()">NO</button>
+      onclick="secondNo()">
+      NO 🥺
+    </button>
+
   </div>
+
 </div>
 
+<!-- SECOND NO POPUP: HIDDEN AT START -->
 <div id="secondModal" class="modal hidden">
+
   <div class="modal-box">
-    <div class="heart">💔</div>
-    <p>Whyyyyy</p>
-    <button class="yes" onclick="closeSecond()">Okay ♡</button>
+
+    <div class="heart">😭💔</div>
+
+    <p style="font-size:32px;font-weight:bold;">
+      Whyyyyy 😭💔
+    </p>
+
+    <p>Don't break my heart, Miss Nurin 🥺❤️</p>
+
+    <button class="yes" onclick="closeSecond()">
+      Okay ♡
+    </button>
+
   </div>
+
 </div>
 
 <script>
+
+// YES: REVEAL LOVE LETTER
 function sayYes() {
-  document.getElementById('firstModal').classList.add('hidden');
-  document.getElementById('secondModal').classList.add('hidden');
-  document.getElementById('loveLetter').classList.remove('hidden');
-  document.getElementById('loveLetter').scrollIntoView({
-    behavior: 'smooth', block: 'nearest'
+
+  document.getElementById("firstModal").classList.add("hidden");
+
+  document.getElementById("secondModal").classList.add("hidden");
+
+  document.getElementById("loveLetter").classList.remove("hidden");
+
+  document.getElementById("loveLetter").scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
   });
+
 }
+
+// FIRST NO: SHOW CONFIRMATION
 function firstNo() {
-  document.getElementById('firstModal').classList.remove('hidden');
+
+  document.getElementById("firstModal").classList.remove("hidden");
+
 }
+
+// SECOND NO: SHOW FUNNY POPUP
 function secondNo() {
-  document.getElementById('firstModal').classList.add('hidden');
-  document.getElementById('secondModal').classList.remove('hidden');
+
+  document.getElementById("firstModal").classList.add("hidden");
+
+  document.getElementById("secondModal").classList.remove("hidden");
+
 }
+
+// CLOSE SECOND POPUP
 function closeSecond() {
-  document.getElementById('secondModal').classList.add('hidden');
+
+  document.getElementById("secondModal").classList.add("hidden");
+
 }
+
+// FLOATING HEARTS
 function makeHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'floating';
-  heart.textContent = ['♡','♥','💕','🌷'][Math.floor(Math.random()*4)];
-  heart.style.left = Math.random()*100 + 'vw';
-  heart.style.fontSize = (16 + Math.random()*20) + 'px';
-  heart.style.animationDuration = (5 + Math.random()*5) + 's';
+
+  const heart = document.createElement("div");
+
+  heart.className = "floating";
+
+  heart.textContent = ["♡", "♥", "💕", "🌷"][
+    Math.floor(Math.random() * 4)
+  ];
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.fontSize = (16 + Math.random() * 20) + "px";
+
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
   document.body.appendChild(heart);
+
   setTimeout(() => heart.remove(), 10000);
+
 }
+
+// CREATE HEARTS
 setInterval(makeHeart, 650);
+
 </script>
+
 </body>
 </html>
